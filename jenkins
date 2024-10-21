@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                sh 'echo "Compiling Java Application" '
+                sh 'javac TestClass.java'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Running Java Application" '
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Simple Test Steps for testing Java Application" '
+            }
+        }
+
+    }
+
+    post {
+        always {
+            // Clean up the workspace after the build
+            cleanWs()
+        }
+    }
+}
